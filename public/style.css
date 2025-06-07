@@ -59,3 +59,20 @@ button:hover {
   border-radius: 10px;
   border: 1px solid #d98eb8;
 }
+
+.follow-links {
+  text-align: center;
+  margin-top: 40px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #555;
+}
+
+.follow-links a {
+  color: #8a4fc4;
+  text-decoration: none;
+}
+
+.follow-links a:hover {
+  text-decoration: underline;
+}
