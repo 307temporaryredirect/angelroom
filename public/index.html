@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,18 +16,25 @@
     </form>
 
     <section id="result" class="hidden">
+      <h2>Hey, <span id="displayUsername"></span></h2>
       <h2>Your Angel Number: <span id="angelNumber"></span></h2>
       <h3 id="angelTitle"></h3>
       <p><strong>Meaning:</strong> <span id="angelMeaning"></span></p>
       <p><strong>Keywords:</strong> <span id="angelKeywords"></span></p>
       <p><strong>Vibe:</strong> <span id="angelVibe"></span></p>
       <p><strong>Message:</strong> <span id="angelMessage"></span></p>
+      <button id="saveImageBtn">Save as Image</button>
     </section>
+
     <div class="follow-links">
-  Follow <a href="https://x.com/muncorner" target="_blank">@muncorner</a> & 
-  <a href="https://x.com/cornerpeeps" target="_blank">@cornerpeeps</a> on X
+      Follow <a href="https://x.com/muncorner" target="_blank">@muncorner</a> &amp; 
+      <a href="https://x.com/cornerpeeps" target="_blank">@cornerpeeps</a> on X
+    </div>
   </div>
 
+  <!-- html2canvas lib -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- script utama kamu -->
   <script src="script.js"></script>
 </body>
 </html>
