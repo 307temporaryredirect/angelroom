@@ -124,7 +124,7 @@ document.getElementById('angelForm').addEventListener('submit', function(e) {
   document.getElementById('angelMessage').textContent = randomAngel.message;
 
   // Hilangkan class 'hidden' supaya tampil
-  resultSection.classList.remove('hidden');
+  resultSection.style.display = 'block';
   // Jangan tambah 'show' karena CSS belum ada definisinya
 
   // Tampilkan tombol save image
