@@ -84,30 +84,34 @@ const angelNumbers = [
 
 document.getElementById('angelForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const username = document.getElementById('username').value.trim();
-  if (!username) return;
 
-  const savedData = localStorage.getItem(`angel-${username}`);
+  const rawUsername = document.getElementById('username').value.trim();
+  if (!rawUsername) return;
 
-  let angelData;
+  // Tambahkan otomatis '@' di depan, walau user nggak nulis
+  const username = `@${rawUsername.replace(/^@/, '')}`;
 
-  if (savedData) {
-    // Kalau sudah ada data, ambil dari localStorage
-    angelData = JSON.parse(savedData);
+  // Cek apakah sudah ada di localStorage
+  const savedAngel = localStorage.getItem(`angel-${username}`);
+  let randomAngel;
+
+  if (savedAngel) {
+    // Kalau sudah ada, pakai data yang lama
+    randomAngel = JSON.parse(savedAngel);
   } else {
-    // Kalau belum ada, ambil secara acak lalu simpan
-    angelData = angelNumbers[Math.floor(Math.random() * angelNumbers.length)];
-    localStorage.setItem(`angel-${username}`, JSON.stringify(angelData));
+    // Kalau belum, ambil random dan simpan
+    randomAngel = angelNumbers[Math.floor(Math.random() * angelNumbers.length)];
+    localStorage.setItem(`angel-${username}`, JSON.stringify(randomAngel));
   }
 
-  // Tampilkan hasil
+  // Tampilkan hasilnya
   const resultSection = document.getElementById('result');
-  document.getElementById('angelNumber').textContent = angelData.number;
-  document.getElementById('angelTitle').textContent = angelData.title;
-  document.getElementById('angelMeaning').textContent = angelData.meaning;
-  document.getElementById('angelKeywords').textContent = angelData.keywords;
-  document.getElementById('angelVibe').textContent = angelData.vibe;
-  document.getElementById('angelMessage').textContent = angelData.message;
+  document.getElementById('angelNumber').textContent = randomAngel.number;
+  document.getElementById('angelTitle').textContent = randomAngel.title;
+  document.getElementById('angelMeaning').textContent = randomAngel.meaning;
+  document.getElementById('angelKeywords').textContent = randomAngel.keywords;
+  document.getElementById('angelVibe').textContent = randomAngel.vibe;
+  document.getElementById('angelMessage').textContent = randomAngel.message;
 
   resultSection.classList.add('show');
   resultSection.classList.remove('hidden');
