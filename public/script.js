@@ -85,11 +85,20 @@ const angelNumbers = [
 // Fungsi untuk save hasil sebagai gambar
 function saveResultAsImage() {
   const resultSection = document.getElementById('result');
+  const saveBtn = document.getElementById('saveBtn');
+
+  // Sembunyikan tombol dulu
+  saveBtn.style.display = 'none';
+
+  // Ambil screenshot
   html2canvas(resultSection).then(canvas => {
     const link = document.createElement('a');
     link.download = 'angel-number-result.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
+
+    // Tampilkan kembali tombol setelah selesai
+    saveBtn.style.display = 'inline-block';
   });
 }
 
