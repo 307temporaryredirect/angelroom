@@ -99,6 +99,7 @@ document.getElementById('angelForm').addEventListener('submit', function(e) {
   const rawUsername = document.getElementById('username').value.trim();
   if (!rawUsername) return;
 
+  // Buat username tanpa '@' untuk key localStorage
   const username = rawUsername.replace(/^@/, '');
   const key = `angel-${username}`;
 
@@ -113,6 +114,7 @@ document.getElementById('angelForm').addEventListener('submit', function(e) {
   }
 
   // Tampilkan hasil
+  const resultSection = document.getElementById('result');
   document.getElementById('userGreeting').textContent = `Hey, @${username}`;
   document.getElementById('angelNumber').textContent = randomAngel.number;
   document.getElementById('angelTitle').textContent = randomAngel.title;
@@ -121,12 +123,13 @@ document.getElementById('angelForm').addEventListener('submit', function(e) {
   document.getElementById('angelVibe').textContent = randomAngel.vibe;
   document.getElementById('angelMessage').textContent = randomAngel.message;
 
-  const resultSection = document.getElementById('result');
+  // Hilangkan class 'hidden' supaya tampil
   resultSection.classList.remove('hidden');
-  resultSection.classList.add('show');
+  // Jangan tambah 'show' karena CSS belum ada definisinya
 
   // Tampilkan tombol save image
   document.getElementById('saveBtn').style.display = 'inline-block';
 });
 
+// Event tombol save image
 document.getElementById('saveBtn').addEventListener('click', saveResultAsImage);
