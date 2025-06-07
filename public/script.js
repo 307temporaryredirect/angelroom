@@ -99,11 +99,9 @@ document.getElementById('angelForm').addEventListener('submit', function(e) {
   const rawUsername = document.getElementById('username').value.trim();
   if (!rawUsername) return;
 
-  // Buat username dengan '@' otomatis, tapi simpan key tanpa '@' supaya konsisten
   const username = rawUsername.replace(/^@/, '');
   const key = `angel-${username}`;
 
-  // Cek localStorage
   const savedAngel = localStorage.getItem(key);
   let randomAngel;
 
@@ -115,7 +113,6 @@ document.getElementById('angelForm').addEventListener('submit', function(e) {
   }
 
   // Tampilkan hasil
-  const resultSection = document.getElementById('result');
   document.getElementById('userGreeting').textContent = `Hey, @${username}`;
   document.getElementById('angelNumber').textContent = randomAngel.number;
   document.getElementById('angelTitle').textContent = randomAngel.title;
@@ -124,12 +121,12 @@ document.getElementById('angelForm').addEventListener('submit', function(e) {
   document.getElementById('angelVibe').textContent = randomAngel.vibe;
   document.getElementById('angelMessage').textContent = randomAngel.message;
 
-  resultSection.classList.add('show');
+  const resultSection = document.getElementById('result');
   resultSection.classList.remove('hidden');
+  resultSection.classList.add('show');
 
   // Tampilkan tombol save image
   document.getElementById('saveBtn').style.display = 'inline-block';
 });
 
-// Tombol save image event listener
 document.getElementById('saveBtn').addEventListener('click', saveResultAsImage);
