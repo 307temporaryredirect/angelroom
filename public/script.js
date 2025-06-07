@@ -82,30 +82,41 @@ const angelNumbers = [
   }
 ];
 
+// Fungsi untuk save hasil sebagai gambar
+function saveResultAsImage() {
+  const resultSection = document.getElementById('result');
+  html2canvas(resultSection).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'angel-number-result.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+}
+
 document.getElementById('angelForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const rawUsername = document.getElementById('username').value.trim();
   if (!rawUsername) return;
 
-  // Tambahkan otomatis '@' di depan, walau user nggak nulis
-  const username = `@${rawUsername.replace(/^@/, '')}`;
+  // Buat username dengan '@' otomatis, tapi simpan key tanpa '@' supaya konsisten
+  const username = rawUsername.replace(/^@/, '');
+  const key = `angel-${username}`;
 
-  // Cek apakah sudah ada di localStorage
-  const savedAngel = localStorage.getItem(`angel-${username}`);
+  // Cek localStorage
+  const savedAngel = localStorage.getItem(key);
   let randomAngel;
 
   if (savedAngel) {
-    // Kalau sudah ada, pakai data yang lama
     randomAngel = JSON.parse(savedAngel);
   } else {
-    // Kalau belum, ambil random dan simpan
     randomAngel = angelNumbers[Math.floor(Math.random() * angelNumbers.length)];
-    localStorage.setItem(`angel-${username}`, JSON.stringify(randomAngel));
+    localStorage.setItem(key, JSON.stringify(randomAngel));
   }
 
-  // Tampilkan hasilnya
+  // Tampilkan hasil
   const resultSection = document.getElementById('result');
+  document.getElementById('userGreeting').textContent = `Hey, @${username}`;
   document.getElementById('angelNumber').textContent = randomAngel.number;
   document.getElementById('angelTitle').textContent = randomAngel.title;
   document.getElementById('angelMeaning').textContent = randomAngel.meaning;
@@ -115,4 +126,10 @@ document.getElementById('angelForm').addEventListener('submit', function(e) {
 
   resultSection.classList.add('show');
   resultSection.classList.remove('hidden');
+
+  // Tampilkan tombol save image
+  document.getElementById('saveBtn').style.display = 'inline-block';
 });
+
+// Tombol save image event listener
+document.getElementById('saveBtn').addEventListener('click', saveResultAsImage);
