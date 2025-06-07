@@ -57,7 +57,13 @@ button:hover {
   padding: 1.5rem;
   border-radius: 10px;
   border: 1px solid #d98eb8;
-  text-align: center;
+  text-align: left; /* diubah dari center ke left */
+}
+
+#result h2,
+#result h3,
+#result p {
+  text-align: left; /* pastikan semua heading dan paragraf juga rata kiri */
 }
 
 .username-display {
@@ -127,4 +133,28 @@ button:hover {
 
 .follow-links a:hover {
   text-decoration: underline;
+}
+
+/* Responsive untuk tampilan mobile */
+@media (max-width: 480px) {
+  body {
+    padding: 0.5rem;
+  }
+  .container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  input[type="text"], button {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+  #angelNumber {
+    font-size: 1.5rem;
+  }
+  #angelTitle {
+    font-size: 1.1rem;
+  }
+  #angelMeaning, #angelKeywords, #angelVibe, #angelMessage {
+    font-size: 0.85rem;
+  }
 }
