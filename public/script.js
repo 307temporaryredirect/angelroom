@@ -87,17 +87,27 @@ document.getElementById('angelForm').addEventListener('submit', function(e) {
   const username = document.getElementById('username').value.trim();
   if (!username) return;
 
-  // Pick random angel number
-  const randomAngel = angelNumbers[Math.floor(Math.random() * angelNumbers.length)];
+  const savedData = localStorage.getItem(`angel-${username}`);
 
-  // Show results with user's name and angel number info
+  let angelData;
+
+  if (savedData) {
+    // Kalau sudah ada data, ambil dari localStorage
+    angelData = JSON.parse(savedData);
+  } else {
+    // Kalau belum ada, ambil secara acak lalu simpan
+    angelData = angelNumbers[Math.floor(Math.random() * angelNumbers.length)];
+    localStorage.setItem(`angel-${username}`, JSON.stringify(angelData));
+  }
+
+  // Tampilkan hasil
   const resultSection = document.getElementById('result');
-  document.getElementById('angelNumber').textContent = randomAngel.number;
-  document.getElementById('angelTitle').textContent = randomAngel.title;
-  document.getElementById('angelMeaning').textContent = randomAngel.meaning;
-  document.getElementById('angelKeywords').textContent = randomAngel.keywords;
-  document.getElementById('angelVibe').textContent = randomAngel.vibe;
-  document.getElementById('angelMessage').textContent = randomAngel.message;
+  document.getElementById('angelNumber').textContent = angelData.number;
+  document.getElementById('angelTitle').textContent = angelData.title;
+  document.getElementById('angelMeaning').textContent = angelData.meaning;
+  document.getElementById('angelKeywords').textContent = angelData.keywords;
+  document.getElementById('angelVibe').textContent = angelData.vibe;
+  document.getElementById('angelMessage').textContent = angelData.message;
 
   resultSection.classList.add('show');
   resultSection.classList.remove('hidden');
