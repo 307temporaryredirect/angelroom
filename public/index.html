@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Angelroom - Angel Number Reading</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Angel Number Reading</h1>
+    <form id="angelForm">
+      <label for="username">Enter your name:</label>
+      <input type="text" id="username" name="username" required />
+      <button type="submit">Reveal Your Angel Number</button>
+    </form>
+
+    <section id="result" class="hidden">
+      <h2>Your Angel Number: <span id="angelNumber"></span></h2>
+      <h3 id="angelTitle"></h3>
+      <p><strong>Meaning:</strong> <span id="angelMeaning"></span></p>
+      <p><strong>Keywords:</strong> <span id="angelKeywords"></span></p>
+      <p><strong>Vibe:</strong> <span id="angelVibe"></span></p>
+      <p><strong>Message:</strong> <span id="angelMessage"></span></p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
